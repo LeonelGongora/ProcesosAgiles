@@ -19,6 +19,10 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import EmployePage from "../pages/employes/EmployePage";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 
+import EmployeHomePage from "../empleados/pages/homePageEmpleados";
+import EmployeeEdit from "../empleados/pages/employee_edit";
+import EmployeeRegister from "../empleados/pages/employee_register";
+import DashboardEmployee from "../pages/dashboard/DashboardEmployee";
 const appRoutes: RouteType[] = [
   {
     index: true,
@@ -66,6 +70,7 @@ const appRoutes: RouteType[] = [
       }
     ]
   },
+
   {
     path: "/component",
     element: <ComponentPageLayout />,
@@ -125,12 +130,43 @@ const appRoutes: RouteType[] = [
 
   {
     path: "/employees",
-    element: <EmployePage />,
+    element: <DashboardEmployee />,
     state: "employee",
     sidebarProps: {
       displayText: "Empleados",
       icon: <EngineeringIcon />
-    }
+    },
+    child: [
+      {
+        index: true,
+        element: <EmployeHomePage />,
+        state: "employee.index"
+      },
+      {
+        path: "/employees/default",
+        element: <EmployeHomePage />,
+        state: "employee.default",
+        sidebarProps: {
+          displayText: "Pagina Principal"
+        },
+      },
+      {
+        path: "/employees/employeeRegister",
+        element: <EmployeeRegister />,
+        state: "employee.analytics",
+        sidebarProps: {
+          displayText: "Registro"
+        }
+      },
+
+      {
+        path: "/employees/employeeEdit",
+        element: <EmployeeEdit />,
+        state: "employee.analytics"
+      },
+
+
+    ]
   },
   
 ];
